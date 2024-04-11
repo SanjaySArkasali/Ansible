@@ -1,0 +1,23 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: update the repository
+    apt:
+      update_cache: yes
+
+  - name: install python3 package
+    apt:
+      name: python3
+
+  - name: test
+    ansible.builtin.apt:
+      name: python3
+      
+  - name: Install Node.js
+    apt:
+      name: nodejs
+      state: present
+    when: ansible_os_family == "Debian"
